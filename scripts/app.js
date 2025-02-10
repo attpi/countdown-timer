@@ -4,8 +4,8 @@ let totalSeconds = 120;
 
 // 設定時鐘呈現的內容
 function updateTimer(seconds) {
-  let mins = Math.floor(seconds / 60);
-  let secs = seconds % 60;
+  let mins = String(Math.floor(seconds / 60)).padStart(2, "0");
+  let secs = String(seconds % 60).padStart(2, "0");
 
   timer.textContent = `${mins}:${secs}`;
 }
