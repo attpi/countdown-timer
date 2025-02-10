@@ -1,6 +1,7 @@
 // 程式碼寫這裡
 const timer = document.querySelector(".timer");
 let totalSeconds = 120;
+let running = false;
 
 // 設定時鐘呈現的內容
 function updateTimer(seconds) {
@@ -10,6 +11,7 @@ function updateTimer(seconds) {
   timer.textContent = `${mins}:${secs}`;
 }
 function initTimer() {
+  running = true;
   setInterval(() => {
     totalSeconds--;
     updateTimer(totalSeconds);
@@ -19,7 +21,7 @@ function initTimer() {
 
 document.addEventListener("keyup", (e) => {
   console.log(e.key);
-  if (e.key === "Enter") {
+  if (!running && e.key === "Enter") {
     initTimer();
   }
 });
