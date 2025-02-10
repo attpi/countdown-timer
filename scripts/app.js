@@ -33,6 +33,7 @@ function playSound() {
 function initTimer() {
   running = true;
   totalSeconds = defaultSesonds;
+  updateTimer(totalSeconds);
   // 設定時間替換的方式
   timeID = setInterval(() => {
     if (totalSeconds > 1) {
