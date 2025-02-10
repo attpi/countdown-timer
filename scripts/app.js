@@ -1,8 +1,10 @@
 // 程式碼寫這裡
 const timer = document.querySelector(".timer");
-let defaultSesonds = 5;
+let defaultSesonds = 120;
 let totalSeconds = 0;
 let running = false;
+let timerID;
+let paused = false;
 
 // 設定時鐘呈現的內容
 function updateTimer(seconds) {
@@ -34,12 +36,15 @@ function initTimer() {
   running = true;
   totalSeconds = defaultSesonds;
   updateTimer(totalSeconds);
+  setupTimer();
+}
+
+function setupTimer() {
   // 設定時間替換的方式
   timeID = setInterval(() => {
     if (totalSeconds > 1) {
       totalSeconds--;
       updateTimer(totalSeconds);
-      //console.log(totalSeconds);
     } else {
       console.log("stop");
       timesUp();
@@ -47,9 +52,34 @@ function initTimer() {
   }, 1000); // 1000代表是間隔時間 1000ms
 }
 
+function pauseTimer() {
+  paused = true;
+  clearInterval(timeID);
+}
+
+function resumeTimer() {
+  paused = false;
+  setupTimer();
+}
+
 document.addEventListener("keyup", (e) => {
-  console.log(e.key);
-  if (!running && e.key === "Enter") {
-    initTimer();
+  switch (e.key) {
+    case "Enter":
+      if (!running) {
+        initTimer();
+      }
+      break;
+    case " ":
+      if (running) {
+        if (paused) {
+          resumeTimer();
+          console.log("unpause");
+        } else {
+          pauseTimer();
+
+          console.log("pause");
+        }
+      }
+      break;
   }
 });
