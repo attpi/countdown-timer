@@ -9,8 +9,17 @@ function updateTimer(seconds) {
 
   timer.textContent = `${mins}:${secs}`;
 }
-setInterval(() => {
-  totalSeconds--;
-  updateTimer(totalSeconds);
-  //console.log(totalSeconds);
-}, 1000); // 1000代表是間隔時間 1000ms
+function initTimer() {
+  setInterval(() => {
+    totalSeconds--;
+    updateTimer(totalSeconds);
+    //console.log(totalSeconds);
+  }, 1000); // 1000代表是間隔時間 1000ms
+}
+
+document.addEventListener("keyup", (e) => {
+  console.log(e.key);
+  if (e.key === "Enter") {
+    initTimer();
+  }
+});
