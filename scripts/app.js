@@ -10,12 +10,24 @@ function updateTimer(seconds) {
   let secs = String(seconds % 60).padStart(2, "0");
 
   timer.textContent = `${mins}:${secs}`;
+
+  if (seconds === 0) {
+    timer.classList.add("times-up");
+  } else {
+    timer.classList.remove("times-up");
+  }
 }
 
-function timesup() {
+function timesUp() {
   clearInterval(timeID);
   running = false;
-  //updateTimer(0);
+  updateTimer(0);
+  playSound();
+}
+
+function playSound() {
+  const sound = new Audio("sounds/news.mp3");
+  sound.play();
 }
 
 function initTimer() {
@@ -23,13 +35,13 @@ function initTimer() {
   totalSeconds = defaultSesonds;
   // 設定時間替換的方式
   timeID = setInterval(() => {
-    if (totalSeconds > 0) {
+    if (totalSeconds > 1) {
       totalSeconds--;
       updateTimer(totalSeconds);
       //console.log(totalSeconds);
     } else {
       console.log("stop");
-      timesup();
+      timesUp();
     }
   }, 1000); // 1000代表是間隔時間 1000ms
 }
