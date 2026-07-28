@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,8 +11,22 @@
   </head>
   <body>
     <main class="countdown-timer">
-      <section class="timer">02:00</section>
-      <section>按下 Enter鍵開始倒數，空白鍵可暫停</section>
+      <section class="timer" aria-live="polite">02:00</section>
+      <div class="progress" aria-hidden="true">
+        <div class="progress-bar"></div>
+      </div>
+      <form class="time-form" id="timeForm">
+        <label>
+          分
+          <input type="number" id="minutesInput" min="0" max="99" value="2" />
+        </label>
+        <label>
+          秒
+          <input type="number" id="secondsInput" min="0" max="59" value="0" />
+        </label>
+        <button type="submit" id="setTimeBtn">設定</button>
+      </form>
+      <section class="hint">按下 Enter 開始倒數，空白鍵可暫停</section>
     </main>
   </body>
 </html>
