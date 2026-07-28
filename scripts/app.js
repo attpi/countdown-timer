@@ -1,6 +1,6 @@
 // 程式碼寫這裡
 const timer = document.querySelector(".timer");
-let defaultSesonds = 120;
+let defaultSeconds = 120;
 let totalSeconds = 0;
 let running = false;
 let timerID;
@@ -21,7 +21,7 @@ function updateTimer(seconds) {
 }
 
 function timesUp() {
-  clearInterval(timeID);
+  clearInterval(timerID);
   running = false;
   updateTimer(0);
   playSound();
@@ -34,14 +34,14 @@ function playSound() {
 
 function initTimer() {
   running = true;
-  totalSeconds = defaultSesonds;
+  totalSeconds = defaultSeconds;
   updateTimer(totalSeconds);
   setupTimer();
 }
 
 function setupTimer() {
   // 設定時間替換的方式
-  timeID = setInterval(() => {
+  timerID = setInterval(() => {
     if (totalSeconds > 1) {
       totalSeconds--;
       updateTimer(totalSeconds);
@@ -54,7 +54,7 @@ function setupTimer() {
 
 function pauseTimer() {
   paused = true;
-  clearInterval(timeID);
+  clearInterval(timerID);
 }
 
 function resumeTimer() {
